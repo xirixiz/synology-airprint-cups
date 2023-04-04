@@ -3,7 +3,7 @@ version: '3.5'
 services:
   airprint:
     container_name: airprint
-    image: znetwork/synology-airprint:0.3
+    image: znetwork/synology-airprint:latest
     build: .
     restart: always
     network_mode: "host"

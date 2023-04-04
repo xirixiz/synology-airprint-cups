@@ -42,7 +42,7 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint
 * `CUPSPASSWORD`: the password for the CUPS admin user - default is `admin` username if unspecified
 
 ### Ports/Network:
-* Must be run on host network. This is required to support multicasting which is needed for Airprint.
+* **Must be run on host network. This is required to support multicasting which is needed for Airprint.**
 
 
 ### Example run env command:

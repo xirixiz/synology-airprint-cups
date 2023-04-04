@@ -19,7 +19,7 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint
 * `sudo synosystemctl disable cups-service-handler`
 
 ### Add and setup printer:
-* CUPS will be configurable at http://[host ip]:631 using the CUPSADMIN/CUPSPASSWORD.
+* CUPS will be configurable at http://[host ip]:631 using the `admin/admin`.
 * Make sure you select `Share This Printer` when configuring the printer in CUPS.
 * ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
@@ -27,9 +27,9 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint
 * `sudo synosystemctl start cupsd`
 * `sudo synosystemctl start cups-lpd`
 * `sudo synosystemctl start cups-service-handler`
-* `sudo synosystemctl anable cupsd`
-* `sudo synosystemctl anable cups-lpd`
-* `sudo synosystemctl anable cups-service-handler`
+* `sudo synosystemctl enable cupsd`
+* `sudo synosystemctl enable cups-lpd`
+* `sudo synosystemctl enable cups-service-handler`
 
 ## Manual Configuration
 

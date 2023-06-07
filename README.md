@@ -52,5 +52,5 @@ docker run --name cups --restart unless-stopped  --net host\
   -v <your config dir>:/config \
   -e CUPSADMIN="<username>" \
   -e CUPSPASSWORD="<password>" \
-  znetwork/cups-avahi-airprint:latest
+  znetwork/synology-airprint:latest
 ```

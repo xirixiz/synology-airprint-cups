@@ -1,8 +1,8 @@
-# xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
+## xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
 
-# Working on Synology DSM 7.x (ARM and AMD64)
+## Working on Synology DSM 7.x (ARM and AMD64)
 
-This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable.
+This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable.
 * `Included drivers HP, Samsung, Canon, Xerox, etc.`
 
 ## Easy run command (use username and password: admin/admin):
@@ -21,7 +21,7 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint
 * Make sure you select `Share This Printer` when configuring the printer in CUPS.
 * ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
-### After setup and testing AirPrint, you can back run on services. (maybe you will need restart nas)
+### After setup and testing AirPrint, you can back run on services. (maybe you will need restart nas, but advised is to keep those disabled)
 * `sudo synosystemctl start cupsd`
 * `sudo synosystemctl start cups-lpd`
 * `sudo synosystemctl start cups-service-handler`

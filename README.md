@@ -1,14 +1,12 @@
-# znetwork/cups-avahi-airprint [docker-image](https://hub.docker.com/r/znetwork/synology-airprint)
+# xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
 
-# Working on Synology DSM 7 (!!!) and AMD64
-
-Fork from [quadportnick/docker-cups-airprint](https://github.com/quadportnick/docker-cups-airprint) and [chuckcharlie/docker-cups-airprint](https://github.com/chuckcharlie/docker-cups-airprint)
+# Working on Synology DSM 7.x (ARM and AMD64)
 
 This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable.
 * `Included drivers HP, Samsung, Canon, Xerox, etc.`
 
 ## Easy run command (use username and password: admin/admin):
-```docker run --name airprint --restart unless-stopped --net host znetwork/synology-airprint:latest```
+```docker run --name airprint --restart unless-stopped --net host xirixiz/synology_airprint:latest```
 
 ### Before run docker conteiner on DSM7 Synology run this commands in ssh terminal:
 * `sudo synosystemctl stop cupsd`
@@ -52,5 +50,5 @@ docker run --name cups --restart unless-stopped  --net host\
   -v <your config dir>:/config \
   -e CUPSADMIN="<username>" \
   -e CUPSPASSWORD="<password>" \
-  znetwork/synology-airprint:latest
+  xirixiz/synology-airprint:latest
 ```

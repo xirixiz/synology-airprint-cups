@@ -1,6 +1,6 @@
-## xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
 
-## Working on Synology DSM 7.x (ARM and AMD64)
+### Synology DSM 7.x (ARM and AMD64) CUPS AirPrint in Docker soltuion
+xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
 
 This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable.
 * `Included drivers HP, Samsung, Canon, Xerox, etc.`

@@ -5,7 +5,8 @@ ARG TARGETARCH
 
 # Use the appropriate base image depending on the target architecture
 # If building locally on the same arch as where you would like to run it, you can modify this to ADM64/debian for example
-FROM ${TARGETARCH}/debian:bookworm-slim
+# and comment out the ARGs on top of this file
+FROM debian:bookworm-slim
 
 # Install necessary packages, avoid installing unnecessary recommendations, and clean up after
 RUN apt-get update \

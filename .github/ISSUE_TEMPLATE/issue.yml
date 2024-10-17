@@ -1,0 +1,91 @@
+name: 🚨 Issue Report
+description: Report an issue
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Support guidelines
+      description: Please read the support guidelines before proceeding.
+      options:
+        - label: I've read the [support guidelines](https://github.com/xirixiz/cups-airprint/blob/main/.github/SUPPORT.md)
+          required: true
+
+  - type: checkboxes
+    attributes:
+      label: I've found an issue and checked that ...
+      description: Make sure that your request fulfills all of the following requirements. If one requirement cannot be satisfied, explain in detail why.
+      options:
+        - label: ... the documentation does not mention anything about my problem
+        - label: ... there are no open or closed issues that are related to my problem
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a brief description of the issue in 1-2 sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behaviour
+      description: Please describe precisely what you'd expect to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Actual behaviour
+      description: Please describe precisely what is actually happening.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Please describe the steps to reproduce the issue.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Docker info
+      description: Please provide the Docker system-wide information.
+      placeholder: Output of `docker info` command
+      render: yaml
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Version
+      description: Please provide operating system version and system information.
+      value: |
+        * Docker compose version (type `docker-compose --version`):
+        * System info (type `uname -a`):
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Docker compose
+      description: Please provide your compose config if applicable.
+      placeholder: Output of `docker-compose config` command
+      render: yaml
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Container logs
+      description: Please provide the container logs.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional info
+      description: Please provide any additional information that seem useful.

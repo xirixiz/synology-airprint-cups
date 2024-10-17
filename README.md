@@ -1,14 +1,26 @@
 
-### Synology DSM 7.x (ARM and AMD64) CUPS AirPrint in Docker soltuion
-xirixiz/synology_airprint [docker-image](https://hub.docker.com/r/xirixiz/synology_airprint)
+### CUPS AirPrint in Docker soltuion (AMD64 / ARM64)
+xirixiz/cups-airprint [docker-image](https://hub.docker.com/r/xirixiz/cups-airprint)
 
-This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable.
+This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable or AirPrint doesn't work anymore on outdated printers. Also Synology has issues, so I decided to move to this solution.
 * `Included drivers HP, Samsung, Canon, Xerox, etc.`
 
-## Easy run command (use username and password: admin/admin):
-```docker run --name airprint --restart unless-stopped --net host xirixiz/synology_airprint:latest```
+Many thanks and credits go out to:
+* https://github.com/ziwork/synology-airprint
+* https://github.com/schredder/cups-airprint
 
-### Before run docker conteiner on DSM7 Synology run this commands in ssh terminal:
+I used these projects as a source for this project. Differences are:
+* Less complicated structure - switched from the double root/root folder to just one folder called app
+* Less complicated structure - reduced to from 3 to 2 files
+* Python code rewrite. Modernized and reduced code from 279 lines to 218 lines (~22%)
+
+### Add and setup printer:
+* CUPS will be configurable at https://<host ip>:631 using `admin/admin`as login credentials.
+* Make sure you select `Share This Printer` when configuring the printer in CUPS.
+* ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
+
+
+### Before you run this container on Synology DSM7.x, please run this commands from the ssh terminal of your Synology:
 * `sudo synosystemctl stop cupsd`
 * `sudo synosystemctl stop cups-lpd`
 * `sudo synosystemctl stop cups-service-handler`
@@ -16,12 +28,8 @@ This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is mean
 * `sudo synosystemctl disable cups-lpd`
 * `sudo synosystemctl disable cups-service-handler`
 
-### Add and setup printer:
-* CUPS will be configurable at http://[host ip]:631 using the `admin/admin`.
-* Make sure you select `Share This Printer` when configuring the printer in CUPS.
-* ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
-### After setup and testing AirPrint, you can back run on services. (maybe you will need restart nas, but advised is to keep those disabled)
+### If needed, you can always role back to the Synology defaults (make sure you first stop and removed the Docker container before doing this)
 * `sudo synosystemctl start cupsd`
 * `sudo synosystemctl start cups-lpd`
 * `sudo synosystemctl start cups-service-handler`
@@ -43,12 +51,21 @@ This Debian-based (bookwork-slim) Docker image runs a CUPS instance that is mean
 * **Must be run on host network. This is required to support multicasting which is needed for Airprint.**
 
 
-### Example run env command:
+### Example run env command.
+* tested on Synology DSM 7.2.x. Paths may be different for the volumes in the example.
 ```
-docker run --name cups --restart unless-stopped  --net host\
-  -v <your services dir>:/services \
-  -v <your config dir>:/config \
-  -e CUPSADMIN="<username>" \
-  -e CUPSPASSWORD="<password>" \
-  xirixiz/synology-airprint:latest
+docker run -d \
+  --name=cups-airprint \
+  --network="host" \
+  --restart=always \
+  --device=/dev/bus/usb:/dev/bus/usb \
+  -e CUPSADMIN="admin" \
+  -e CUPSPASSWORD="admin" \
+  -e TZ="Europe/Amsterdam" \
+  -v <some path>/services:/services \
+  -v <some path>/cups/config:/config \
+  -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
+  -v /etc/localtime:/etc/localtime:ro \
+  --dns=<your internal dns server> \
+  xirixiz/cups-airprint:latest
 ```

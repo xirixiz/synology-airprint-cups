@@ -1,7 +1,7 @@
 services:
   airprint:
-    container_name: synology-airprint
-    image: synology-airprint:latest
+    container_name: cups-airprint
+    image: xirixiz/cups-airprint:latest
     build: .
     restart: always
     network_mode: "host"
@@ -10,13 +10,12 @@ services:
     environment:
       CUPSADMIN: "admin"
       CUPSPASSWORD: "admin"
+      TZ: Europe/Amsterdam
     volumes:
-      - "/volume1/onedrive/smarthome/data/cups/services:/services"
-      - "/volume1/onedrive/smarthome/data/cups/config:/config"    
+      - "<some path>/services:/services"
+      - "<some path>/config:/config"
       - "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
       - "/etc/localtime:/etc/localtime:ro"
     dns:
-      - 10.79.10.1
-    env_file:
-      - .env
+      - <your internal dns server>
 

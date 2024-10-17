@@ -21,10 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Rewrite by Bram van Dartel 2024-10
+Rewrite by Bram van Dartel (aka xirixiz) 2024-10
 """
-
-#!/usr/bin/env python3
 
 import cups
 import os

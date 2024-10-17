@@ -1,0 +1,41 @@
+name: 'Mark stale issues and PRs'
+
+on:
+  schedule:
+    - cron: '30 1 * * *'  # Runs daily at 01:30
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Custom labels for stale issues and PRs
+          stale-issue-label: stale
+          stale-pr-label: stale-pr
+
+          # Exempt specific labels from being marked stale
+          exempt-issue-labels: pinned,security
+          exempt-pr-labels: pinned,security
+
+          # Messages for stale issues and PRs
+          stale-issue-message: 'This issue has been automatically marked as stale due to inactivity. It will be closed in 5 days if no further activity occurs. Thank you for your contributions.'
+          stale-pr-message: 'This pull request has been marked as stale due to inactivity. Please update it to avoid closure.'
+
+          # Messages when issues/PRs are closed
+          close-issue-message: 'This issue has been automatically closed due to inactivity. Please reopen if further updates occur.'
+          close-pr-message: 'This pull request has been automatically closed due to inactivity. Please reopen if further updates occur.'
+
+          # Number of days before issues and PRs are marked stale or closed
+          days-before-issue-stale: 30
+          days-before-issue-close: 5
+          days-before-pr-stale: 60  # PRs become stale after 60 days of inactivity
+          days-before-pr-close: 7  # PRs are closed 7 days after being marked as stale
+
+          # Ignore specific events (negative values mean it won't apply)
+          ignore-updates: true  # Ignore updates for stale issues
+
